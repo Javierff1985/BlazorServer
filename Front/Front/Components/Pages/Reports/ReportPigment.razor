@@ -2,11 +2,12 @@
 @using Datos
 @using Servicios
 @inject ServiciosInkRoom Ser_
+@using System.Linq
+@using System.Globalization
 
 <h3>ReportPigment</h3>
 
 <style>
-
     .Contenedor-Principal {
         display: flex;
         justify-content: center;
@@ -25,11 +26,11 @@
     }
 
     .tabla-oscura {
-       /*  background-color: rgba(255,255,255,0.05); */
+        /*  background-color: rgba(255,255,255,0.05); */
         border-radius: 12px;
         overflow: hidden;
-        color:lightgray;
-        font-size:small;
+        color: lightgray;
+        font-size: small;
     }
 
     .input-moderno {
@@ -49,6 +50,66 @@
     }
 
 
+    .tabla-scroll {
+        max-height: 400px; /* Ajusta según tu layout */
+        overflow-y: auto;
+        border-radius: 12px;
+        backdrop-filter: blur(6px);
+        background: rgba(255, 255, 255, 0.05);
+        box-shadow: inset 0 0 0.5px rgba(255, 255, 255, 0.2);
+        padding: 8px;
+    }
+
+        /* Opcional: scroll elegante */
+        .tabla-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .tabla-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+
+    /* Boton Rojo Alerta */
+
+    .boton-circular {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        padding: 0;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #dc3545;
+        color: white;
+        border: 3px solid #dc3545;
+        box-shadow: 0 0 10px #dc3545;
+        animation: parpadeo 2s ease-in-out infinite, resplandor 1.5s ease-in-out infinite;
+    }
+
+    @@keyframes parpadeo {
+        0%, 100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0;
+        }
+    }
+
+    @@keyframes resplandor {
+        0%, 100% {
+            box-shadow: 0 0 10px #dc3545, 0 0 20px #dc3545;
+        }
+
+        50% {
+            box-shadow: 0 0 5px #dc3545, 0 0 10px #dc3545;
+        }
+    }
+
+    
 
 
 </style>
@@ -60,68 +121,128 @@
 <div class="Contenedor-Principal">
     <div class="Contenedor-Secundario">
         <br />
+            
 
-        <div class="filter-bar">
-            <label for="columnaFiltro" class="text-white">Filter by:</label>
-            <select @bind="selectedColumn" class="input-moderno">
+
+        <div class="row h-100">
+            <!-- Columna izquierda -->
+            <div class="col-md-6 d-flex align-items-center justify-content-center">
+              <label class="text-white me-2">Filtrar por:</label>
+            <select @bind="selectedColumn" class="input-moderno me-2">
                 <option value="Type">Type</option>
                 <option value="Description">Description</option>
+                <option value="Code">Code</option>
                 <option value="Stock">Stock</option>
                 <option value="InUse">In Use</option>
+                <option value="Percentage">Percentage %</option>
             </select>
-            <input type="text" @bind="filterText" class="input-moderno" placeholder="🔍..." />
-        </div>
+            <input type="text" @bind="filterText" class="input-moderno" placeholder="🔍 Buscar..." />
+            </div>
 
-        <table class="tabla-oscura w-100">
-            <thead class="table-light text-white">
-                <tr style="border:solid;border-block-width:1px;background-color:black">
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th>Code</th>
-                    <th>Stock</th>
-                    <th>In Use</th>
-                    <th>Percentage %</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody style="border:solid;border-block-width:1px;border-color:silver">
-                @foreach (var item in FilteredList)
-                {
-                    <tr style="border:solid;border-block-width:1px;border-color:dimgray">
-                        <td>@item.Type</td>
-                        <td>@item.Description</td>
-                        <td>@item.Code</td>
-                        <td>@item.TOTAL_STOCK_QUANTITY</td>
-                        <td>@item.TOTAL_USE_QUANTITY</td>
-                        <td>@item.PERCENTAGE_USED</td>
-                        <td>
-                            @GetStatusIcon(item)
-                        </td>
+            <!-- Columna derecha -->
+            <div class="col-md-6 d-flex align-items-center justify-content-center bg-dark text-white">
+              <h2 class="text-center">⚙️ Panel Derecho</h2>
+
+
+
+
+            </div>
+  </div>
+
+
+
+
+
+        <br />
+        <div class="tabla-scroll">
+            <table class="tabla-oscura w-100">
+                <thead class="table-light text-white">
+                    <tr style="border:solid;border-block-width:1px;background-color:black" class="text-center">
+                        <th>Status</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Code</th>
+                        <th>Stock</th>
+                        <th>In Use</th>
+                        <th>Percentage %</th>
+                        
                     </tr>
-                }
-            </tbody>
-        </table>
-
-
-
-
-
-
-
-        <br /><br /><br />
+                </thead>
+                <tbody style="border:solid;border-block-width:1px;border-color:silver">
+                    @foreach (var item in FilteredList)
+                    {
+                        <tr style="border:solid;border-block-width:1px;border-color:dimgray">
+                              <td style="background-color:rgba(255,255,255,0.2);width:30px" class="text-center">
+                                @{
+                                    string alerta = "";
+                                    if (item.TOTAL_STOCK_QUANTITY >= 2 && item.TOTAL_USE_QUANTITY > 0)
+                                    {
+                                        alerta = "Verde";
+                                        <i class="bi bi-check-circle-fill" style="font-size: 1.0rem;color:lime"></i>
+                                    }
+                                     //Regla "Warning" 🔶
+                                    else if (item.TOTAL_STOCK_QUANTITY == 1 && item.TOTAL_USE_QUANTITY == 1)
+                                    {
+                                        alerta = "Naranja";
+                                        <i class="bi bi-exclamation-triangle-fill" style="font-size: 1.0rem;color:darkorange"></i>
+                                    }
+                                    // Regla "Alert" 🟥
+                                    else if (item.TOTAL_STOCK_QUANTITY < 0 && item.TOTAL_USE_QUANTITY <= 1)
+                                    {
+                                        alerta = "Error rojo";
+                                        bool esAlertaRoja = item.TOTAL_STOCK_QUANTITY < 0 && item.TOTAL_USE_QUANTITY <= 1;
+                                        @if (esAlertaRoja)
+                                        {
+                                            alerta = "Rojo";
+                                            <button type="button" class="btn btn-danger boton-circular text-center" style="width:20px;height:20px" title="Alerta Crítica">x</button>
+                                        }
+                                        else
+                                        {
+                                            <span style="font-weight:bold;">OKK</span> <!-- o 🔄 según tu lógica -->
+                                        }
+                                    }
+                                    else
+                                    {
+                                        // alerta = "Error no sale ni mierda";
+                                        <button type="button" class="btn btn-danger boton-circular" style="width:20px;height:20px" title="Alerta Crítica"></button>
+                                    }
+                                
+                                
+                                }
+                               
+                            </td>
+                            <td>@item.Type</td>
+                            <td>@item.Description</td>
+                            <td>@item.Code</td>
+                            <td>@item.TOTAL_STOCK_QUANTITY</td>
+                            <td>@item.TOTAL_USE_QUANTITY</td>
+                            <td>@item.PERCENTAGE_USED</td>
+                          
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @*  <button type="button" class="btn btn-danger boton-circular" style="width:20px;height:20px" title="Alerta Crítica"></button> *@
+        <br />
+        <br />
+        <br />
     </div>
 </div>
 
 
+
+
+
+
 @code {
 
+    //List<string> estados = new() { "Verde", "Naranja", "Rojo"};
 
 
-    private List<InkRoomReportACLS> ListaGeneralFront = new();
     private string selectedColumn = "Type";
     private string filterText = "";
-
-    private List<InkRoomReportACLS> ListaGeneral = new();
+    private List<InkRoomReportACLS> ListaGeneralFront = new();
 
     protected override async Task OnInitializedAsync()
     {
@@ -131,51 +252,38 @@
         }
         catch (Exception)
         {
-
             throw;
         }
-        
     }
-
 
     private IEnumerable<InkRoomReportACLS> FilteredList =>
         string.IsNullOrWhiteSpace(filterText)
             ? ListaGeneralFront
             : ListaGeneralFront.Where(item =>
-                selectedColumn switch
+            {
+                var text = filterText.Trim();
+                return selectedColumn switch
                 {
-                    "Type" => item.Type.Contains(filterText, StringComparison.OrdinalIgnoreCase),
-                    "Description" => item.Description.Contains(filterText, StringComparison.OrdinalIgnoreCase),
-                    "Stock" => item.TOTAL_STOCK_QUANTITY.ToString().Contains(filterText),
-                    "InUse" => item.TOTAL_USE_QUANTITY.ToString().Contains(filterText),
-                    _ => true
-                });
+                    "Type" => !string.IsNullOrEmpty(item.Type) &&
+                              item.Type.Contains(text, StringComparison.OrdinalIgnoreCase),
 
-    private RenderFragment GetStatusIcon(InkRoomReportACLS item) => builder =>
-    {
-        string icon = "❓";
-        string color = "gray";
+                    "Description" => !string.IsNullOrEmpty(item.Description) &&
+                                     item.Description.Contains(text, StringComparison.OrdinalIgnoreCase),
 
-        if (item.TOTAL_STOCK_QUANTITY >= 2 && item.TOTAL_USE_QUANTITY > 0)
-        {
-            icon = "✅";
-            color = "green";
-        }
-        else if (item.TOTAL_STOCK_QUANTITY == 1 && item.TOTAL_USE_QUANTITY == 1)
-        {
-            icon = "🔶";
-            color = "orange";
-        }
-        else if (item.TOTAL_STOCK_QUANTITY < 0 && item.TOTAL_USE_QUANTITY <= 1)
-        {
-            icon = "🟥";
-            color = "red";
-        }
+                    "Code" => !string.IsNullOrEmpty(item.Code) &&
+                              item.Code.Contains(text, StringComparison.OrdinalIgnoreCase),
 
-        builder.OpenElement(0, "span");
-        builder.AddAttribute(1, "style", $"color:{color}; font-weight:bold;");
-        builder.AddContent(2, icon);
-        builder.CloseElement();
-    };
+                    "Stock" => item.TOTAL_STOCK_QUANTITY.ToString().Contains(text),
+
+                    "InUse" => item.TOTAL_USE_QUANTITY.ToString().Contains(text),
+
+                    //"Percentage" => item.PERCENTAGE_USED.ToString("F2", CultureInfo.InvariantCulture).Contains(text),
+
+
+                    _ => false // No filtrar si la columna no es válida
+                };
+            });
+
+    
+
 }
-

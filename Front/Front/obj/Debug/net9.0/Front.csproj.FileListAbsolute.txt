@@ -126,3 +126,4 @@ C:\JavierDesarrollos\BlazorServer\Front\Front\obj\Debug\net9.0\refint\Front.dll
 C:\JavierDesarrollos\BlazorServer\Front\Front\obj\Debug\net9.0\Front.pdb
 C:\JavierDesarrollos\BlazorServer\Front\Front\obj\Debug\net9.0\Front.genruntimeconfig.cache
 C:\JavierDesarrollos\BlazorServer\Front\Front\obj\Debug\net9.0\ref\Front.dll
+C:\JavierDesarrollos\BlazorServer\Front\Front\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
