@@ -1,30 +1,108 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">Front</a>
-    </div>
-</div>
+﻿@inject NavigationManager NavManager
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+<style>
+    
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 260px;
+        height: 100vh;
+        padding: 2rem 1.5rem;
+        background: rgba(255, 255, 255, 0.1); /* Transparente */
+        backdrop-filter: blur(14px); /* Glassmorphism */
+        border-right: 1px solid rgba(200, 200, 200, 0.5);
+        box-shadow: 4px 0 16px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        z-index: 100;
+    }
 
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="nav flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin: 10px 0;
+        }
+
+        .sidebar .section-title {
+            font-weight: bold;
+            margin-top: 20px;
+            color: #aaa;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            display: block;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+            .sidebar a.active,
+            .sidebar a:hover {
+                background-color: red;
+            }
+
+
+
+    .nav-link.active {
+        background-color: #3a3a5a;
+        color: #fff;
+        border-radius: 8px;
+    }
+
+
+
+
+
+
+</style>
+
+    <nav class="sidebar">
+        <div class="text-center">
+            <img src="/NuevoLogoRedwall.png" style="width:100%;height:110px" />
+            <br />
         </div>
+        <ul>
+            <li class="section-title">Ink Room</li>
+            
+            <li><NavLink href="InkRoom/EntryPigment">Entry Pigment</NavLink></li>
+            <li><NavLink href="InkRoom/updatePigment">Update Pigment</NavLink></li>
+            <li><NavLink href="Inkroom/StockQuality">Stock Quality</NavLink></li>
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
+            <li class="section-title">Report</li>
+            
+            <li><NavLink href="/Reports/ReportPigment">Pigment Report</NavLink></li>
+            <li><NavLink href="Reports/StockMixed">Stock Mixed</NavLink></li>
+        </ul>
     </nav>
-</div>
+
+
+
+
+@code {
+
+    private bool isPigmentSectionActive => NavManager.Uri.Contains("/InkRoom/");
+
+
+
+    private bool showInkroomSubmenu = false;
+    private bool showDashboardSubmenu = false;
+
+    private void ToggleInkRoomSubmenu()
+    {
+        showInkroomSubmenu = !showInkroomSubmenu;
+    }
+    private void ToggleDashboardSubmenu()
+    {
+        showDashboardSubmenu = !showDashboardSubmenu;
+    }
+}
 

@@ -1,0 +1,181 @@
+﻿@page "/Reports/ReportPigment"
+@using Datos
+@using Servicios
+@inject ServiciosInkRoom Ser_
+
+<h3>ReportPigment</h3>
+
+<style>
+
+    .Contenedor-Principal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100% padding: 20px;
+    }
+
+    .Contenedor-Secundario {
+        backdrop-filter: blur(12px);
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 30px;
+        width: 100%;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .tabla-oscura {
+       /*  background-color: rgba(255,255,255,0.05); */
+        border-radius: 12px;
+        overflow: hidden;
+        color:lightgray;
+        font-size:small;
+    }
+
+    .input-moderno {
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: none;
+        background: rgba(255,255,255,0.1);
+        color: white;
+        margin-right: 10px;
+    }
+
+    .filter-bar {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+
+
+
+</style>
+
+<div class="text-center">
+    <h3 style="color:white">ReportPigment</h3>
+</div>
+
+<div class="Contenedor-Principal">
+    <div class="Contenedor-Secundario">
+        <br />
+
+        <div class="filter-bar">
+            <label for="columnaFiltro" class="text-white">Filter by:</label>
+            <select @bind="selectedColumn" class="input-moderno">
+                <option value="Type">Type</option>
+                <option value="Description">Description</option>
+                <option value="Stock">Stock</option>
+                <option value="InUse">In Use</option>
+            </select>
+            <input type="text" @bind="filterText" class="input-moderno" placeholder="🔍..." />
+        </div>
+
+        <table class="tabla-oscura w-100">
+            <thead class="table-light text-white">
+                <tr style="border:solid;border-block-width:1px;background-color:black">
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Code</th>
+                    <th>Stock</th>
+                    <th>In Use</th>
+                    <th>Percentage %</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody style="border:solid;border-block-width:1px;border-color:silver">
+                @foreach (var item in FilteredList)
+                {
+                    <tr style="border:solid;border-block-width:1px;border-color:dimgray">
+                        <td>@item.Type</td>
+                        <td>@item.Description</td>
+                        <td>@item.Code</td>
+                        <td>@item.TOTAL_STOCK_QUANTITY</td>
+                        <td>@item.TOTAL_USE_QUANTITY</td>
+                        <td>@item.PERCENTAGE_USED</td>
+                        <td>
+                            @GetStatusIcon(item)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+
+
+
+
+
+        <br /><br /><br />
+    </div>
+</div>
+
+
+@code {
+
+
+
+    private List<InkRoomReportACLS> ListaGeneralFront = new();
+    private string selectedColumn = "Type";
+    private string filterText = "";
+
+    private List<InkRoomReportACLS> ListaGeneral = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            ListaGeneralFront = await Ser_.ListaGeneralAsync();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        
+    }
+
+
+    private IEnumerable<InkRoomReportACLS> FilteredList =>
+        string.IsNullOrWhiteSpace(filterText)
+            ? ListaGeneralFront
+            : ListaGeneralFront.Where(item =>
+                selectedColumn switch
+                {
+                    "Type" => item.Type.Contains(filterText, StringComparison.OrdinalIgnoreCase),
+                    "Description" => item.Description.Contains(filterText, StringComparison.OrdinalIgnoreCase),
+                    "Stock" => item.TOTAL_STOCK_QUANTITY.ToString().Contains(filterText),
+                    "InUse" => item.TOTAL_USE_QUANTITY.ToString().Contains(filterText),
+                    _ => true
+                });
+
+    private RenderFragment GetStatusIcon(InkRoomReportACLS item) => builder =>
+    {
+        string icon = "❓";
+        string color = "gray";
+
+        if (item.TOTAL_STOCK_QUANTITY >= 2 && item.TOTAL_USE_QUANTITY > 0)
+        {
+            icon = "✅";
+            color = "green";
+        }
+        else if (item.TOTAL_STOCK_QUANTITY == 1 && item.TOTAL_USE_QUANTITY == 1)
+        {
+            icon = "🔶";
+            color = "orange";
+        }
+        else if (item.TOTAL_STOCK_QUANTITY < 0 && item.TOTAL_USE_QUANTITY <= 1)
+        {
+            icon = "🟥";
+            color = "red";
+        }
+
+        builder.OpenElement(0, "span");
+        builder.AddAttribute(1, "style", $"color:{color}; font-weight:bold;");
+        builder.AddContent(2, icon);
+        builder.CloseElement();
+    };
+}
+

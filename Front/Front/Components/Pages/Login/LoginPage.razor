@@ -1,0 +1,124 @@
+﻿@page "/"
+@using Radzen
+@using Radzen.Blazor
+@using System.ComponentModel.DataAnnotations
+
+<style>
+
+
+    .login-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+       
+        padding: 20px;
+    }
+
+    .login-card {
+        backdrop-filter: blur(12px);
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 16px;
+        padding: 30px;
+        width: 350px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+
+    }
+
+
+
+
+
+
+    .animated-bg {
+        background: linear-gradient(135deg, #111 0%, #222 100%);
+        animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .fade-in {
+        animation: fadeInUp 1s ease-out;
+    }
+
+    .glow-red {
+        color: #dc3545;
+        text-shadow: 0 0 8px #dc3545, 0 0 16px #ff4d4d;
+    }
+
+    .hover-fade:hover {
+        background-color: #dc3545 !important;
+        color: white !important;
+        transition: all 0.3s ease;
+    }
+
+    /* Animaciones */
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+</style>
+
+
+<div class="login-wrapper">
+    <EditForm Model="@loginModel" OnValidSubmit="@HandleLogin">
+        <div class="login-card text-center">
+            <img src="/NuevoLogoRedwall.png" style="width:200px;height:100px" />
+            <h2 class="text-white glow-red mt-2">Login</h2>
+            <br />
+            <RadzenTextBox @bind-Value="loginModel.User" Placeholder="User" class="form-control" Style="width:100%" />
+            <ValidationMessage For="@(() => loginModel.User)" />
+            <br />
+            <RadzenPassword @bind-Value="loginModel.Password" Placeholder="Password" class="form-control" Style="width:100%" />
+            <ValidationMessage For="@(() => loginModel.Password)" />
+            <RadzenButton Text="Ingresar" ButtonStyle="ButtonStyle.Primary" class="btn" Style="width:100%; margin-top:10px;" />
+        </div>
+    </EditForm>
+</div>
+
+
+
+
+
+
+
+
+@code {
+   
+    private LoginModel loginModel = new();
+
+    private void HandleLogin()
+    {
+        // lógica de autenticación
+        Console.WriteLine($"Login: {loginModel.User}");
+    }
+
+    public class LoginModel
+    {
+        [Required(ErrorMessage = "El correo es obligatorio")]
+        public string User { get; set; }
+
+        [Required(ErrorMessage = "Incorrect Password")]
+        public string Password { get; set; }
+    }
+
+
+}
+

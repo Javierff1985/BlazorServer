@@ -36,6 +36,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/JavierDesarrollos/BlazorServer/Front/Front/Components/Pages/InkRoom/EntryPigment.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xJbmtSb29tXEVudHJ5UGlnbWVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/JavierDesarrollos/BlazorServer/Front/Front/Components/Pages/InkRoom/EntryStockMixed.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xJbmtSb29tXEVudHJ5U3RvY2tNaXhlZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/JavierDesarrollos/BlazorServer/Front/Front/Components/Pages/InkRoom/UpdatePigment.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xJbmtSb29tXFVwZGF0ZVBpZ21lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/JavierDesarrollos/BlazorServer/Front/Front/Components/Pages/Login/LoginPage.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMb2dpblxMb2dpblBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/JavierDesarrollos/BlazorServer/Front/Front/Components/Pages/Reports/ReportPigment.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZXBvcnRzXFJlcG9ydFBpZ21lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/JavierDesarrollos/BlazorServer/Front/Front/Components/Pages/Weather.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xXZWF0aGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 

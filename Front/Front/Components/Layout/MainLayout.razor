@@ -1,18 +1,129 @@
 ﻿@inherits LayoutComponentBase
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="_content/Radzen.Blazor/css/default-base.css" rel="stylesheet" />
+
+
+<style>
+
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('/vector3.jpg') no-repeat center center fixed;
+        background-size: cover;
+        filter: blur(8px);
+        z-index: -1;
+    }
+
+    .login-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 2rem;
+        backdrop-filter: blur(2px);
+    }
+
+    .logo-text {
+        text-align: center;
+        color: white;
+        text-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+    }
+
+    .glow-red {
+        color: #ff4d4d;
+        text-shadow: 0 0 8px #ff4d4d, 0 0 16px #ff4d4d;
+    }
+
+    .glass-card {
+        background: rgba(0, 0, 0, 0.75);
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+        padding: 2rem;
+        width: 100%;
+        max-width: 400px;
+        backdrop-filter: blur(8px);
+    }
+
+    .radzen-icon {
+        font-size: 48px;
+        color: white;
+    }
+
+    .radzen-button {
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    .radzen-link {
+        color: lightgray;
+        text-align: center;
+        display: block;
+        margin-top: 1rem;
+    }
+
+
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(6px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+    }
+
+    .modal-content {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 12px;
+        padding: 2rem;
+        width: 300px;
+        color: #fff;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        text-align: center;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .btn-cerrar {
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background: #ff4c4c;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        cursor: pointer;
+    }
+
+    .glass-button:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.03);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    }
+
+</style>
+
+
+
 
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+
+    <NavMenu />
+
 
     <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        <div class="container-xxl">
+            @Body
         </div>
 
-        <article class="content px-4">
-            @Body
-        </article>
     </main>
 </div>
 

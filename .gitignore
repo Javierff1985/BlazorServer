@@ -1,0 +1,10 @@
+# Archivos bloqueados por Visual Studio
+.vs/
+*.vsidx
+*.suo
+*.user
+*.dbmdl
+
+# Carpetas de build
+bin/
+obj/
