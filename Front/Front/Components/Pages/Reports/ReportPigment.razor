@@ -1,9 +1,12 @@
 ﻿@page "/Reports/ReportPigment"
 @using Datos
+@using Radzen.Blazor
 @using Servicios
 @inject ServiciosInkRoom Ser_
 @using System.Linq
 @using System.Globalization
+@using Radzen
+@using System.Text.Json
 
 <h3>ReportPigment</h3>
 
@@ -138,15 +141,22 @@
             </select>
             <input type="text" @bind="filterText" class="input-moderno" placeholder="🔍 Buscar..." />
             </div>
+            
+           
 
             <!-- Columna derecha -->
             <div class="col-md-6 d-flex align-items-center justify-content-center bg-dark text-white">
-              <h2 class="text-center">⚙️ Panel Derecho</h2>
 
 
 
 
             </div>
+
+
+
+
+
+
   </div>
 
 
@@ -233,11 +243,13 @@
 
 
 
-
-
 @code {
 
     //List<string> estados = new() { "Verde", "Naranja", "Rojo"};
+
+  
+
+
 
 
     private string selectedColumn = "Type";
@@ -285,5 +297,9 @@
             });
 
     
+    
+   
+
+
 
 }
