@@ -1,11 +1,20 @@
 ﻿@page "/Reports/ReportPigment"
+
+
 @using Datos
+
 @using Servicios
 @inject ServiciosInkRoom Ser_
 @using System.Linq
 @using System.Globalization
+@inject IJSRuntime JsRuntime
+
+
+
 
 <h3>ReportPigment</h3>
+
+
 
 <style>
     .Contenedor-Principal {
@@ -108,11 +117,58 @@
             box-shadow: 0 0 5px #dc3545, 0 0 10px #dc3545;
         }
     }
+.spinner-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
 
-    
+.glass-loader {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 20px 30px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: #fff;
+}
+
+.loader {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #00bcd4;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+
+@@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.cantidad-label {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #e63946;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 12px;
+    border-radius: 8px;
+    backdrop-filter: blur(6px);
+}
+
 
 
 </style>
+
+
+
+
+
+
+
+
 
 <div class="text-center">
     <h3 style="color:white">ReportPigment</h3>
@@ -121,9 +177,6 @@
 <div class="Contenedor-Principal">
     <div class="Contenedor-Secundario">
         <br />
-            
-
-
         <div class="row h-100">
             <!-- Columna izquierda -->
             <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -136,22 +189,18 @@
                 <option value="InUse">In Use</option>
                 <option value="Percentage">Percentage %</option>
             </select>
-            <input type="text" @bind="filterText" class="input-moderno" placeholder="🔍 Buscar..." />
+                 <input type="text" @bind="filterText" class="input-moderno" placeholder="🔍 Buscar..." />
             </div>
+            
+           
 
             <!-- Columna derecha -->
-            <div class="col-md-6 d-flex align-items-center justify-content-center bg-dark text-white">
-              <h2 class="text-center">⚙️ Panel Derecho</h2>
+            <div class="col-md-6 d-flex align-items-center justify-content-center text-white">
+              <h2 class="text-center">⚙️ Grafica</h2>
 
-
-
-
+             
             </div>
-  </div>
-
-
-
-
+        </div>
 
         <br />
         <div class="tabla-scroll">
@@ -205,41 +254,70 @@
                                     {
                                         // alerta = "Error no sale ni mierda";
                                         <button type="button" class="btn btn-danger boton-circular" style="width:20px;height:20px" title="Alerta Crítica"></button>
-                                    }
-                                
-                                
+                                    }  
                                 }
-                               
                             </td>
                             <td>@item.Type</td>
                             <td>@item.Description</td>
                             <td>@item.Code</td>
                             <td>@item.TOTAL_STOCK_QUANTITY</td>
                             <td>@item.TOTAL_USE_QUANTITY</td>
-                            <td>@item.PERCENTAGE_USED</td>
-                          
-                        </tr>
-                    }
+                            <td>@item.PERCENTAGE_USED</td>                          
+                        </tr>                    }
                 </tbody>
             </table>
         </div>
-        @*  <button type="button" class="btn btn-danger boton-circular" style="width:20px;height:20px" title="Alerta Crítica"></button> *@
-        <br />
-        <br />
-        <br />
+        @*  <button type="button" class="btn btn-danger boton-circular" style="width:20px;height:20px" title="Alerta Crítica"></button> *@       
     </div>
 </div>
 
 
+<label class="cantidad-label">@cantidad</label>
+
+@if (showLoading)
+{<div class="spinner-wrapper">
+    <div class="glass-loader">
+        <div class="loader"></div>
+        <span>Cargando vista...</span>
+    </div>
+</div>
+    @* <LoadingSpinner /> *@
+}
+else if (!isLoaded)
+{
+    <!-- Nada aún, pero sin mostrar spinner -->
+}
+else
+{
+    <DashboardContent />
+}
+
+  
+@code{
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var datos = new[]
+            {
+                new { label = "OK", value = 12 },
+                new { label = "Warning", value = 5 },
+                new { label = "Error", value = 3 }
+            };
+
+            await JsRuntime.InvokeVoidAsync("drawCanvasBarChart", datos);
+        }
+    }
 
 
 
 
-@code {
-
-    //List<string> estados = new() { "Verde", "Naranja", "Rojo"};
 
 
+    private int cantidad;
+    private bool showLoading = false;
+    private bool isLoaded = false;  
     private string selectedColumn = "Type";
     private string filterText = "";
     private List<InkRoomReportACLS> ListaGeneralFront = new();
@@ -248,12 +326,36 @@
     {
         try
         {
-            ListaGeneralFront = await Ser_.ListaGeneralAsync();
+            var delayTask = Task.Delay(1000); // espera 2 segundos
+            var completedTask = await Task.WhenAny(Ser_.ListaGeneralAsync(), delayTask);
+
+            if (completedTask == delayTask)
+            {
+                showLoading = true;
+            }
+            else
+            {
+                 ListaGeneralFront = await Ser_.ListaGeneralAsync(); // espera que termine la carga real
+                 cantidad = ListaGeneralFront.Count(item => item.TOTAL_STOCK_QUANTITY >= 2 && item.TOTAL_USE_QUANTITY > 0);
+                 isLoaded = true;
+                 showLoading = false;            
+            
+                  var datos = new[]
+                    {
+                        new { label = "OK", value = 12 },
+                        new { label = "Warning", value = 5 },
+                        new { label = "Error", value = 3 }
+                    };
+                await JsRuntime.InvokeVoidAsync("drawCanvasBarChart", datos); 
+
+            }
+          
         }
-        catch (Exception)
+        catch(Exception ex)
         {
-            throw;
+            //isLoading = false;
         }
+
     }
 
     private IEnumerable<InkRoomReportACLS> FilteredList =>
@@ -266,15 +368,11 @@
                 {
                     "Type" => !string.IsNullOrEmpty(item.Type) &&
                               item.Type.Contains(text, StringComparison.OrdinalIgnoreCase),
-
                     "Description" => !string.IsNullOrEmpty(item.Description) &&
                                      item.Description.Contains(text, StringComparison.OrdinalIgnoreCase),
-
                     "Code" => !string.IsNullOrEmpty(item.Code) &&
                               item.Code.Contains(text, StringComparison.OrdinalIgnoreCase),
-
                     "Stock" => item.TOTAL_STOCK_QUANTITY.ToString().Contains(text),
-
                     "InUse" => item.TOTAL_USE_QUANTITY.ToString().Contains(text),
 
                     //"Percentage" => item.PERCENTAGE_USED.ToString("F2", CultureInfo.InvariantCulture).Contains(text),
@@ -285,5 +383,9 @@
             });
 
     
+    
+   
+
+
 
 }
