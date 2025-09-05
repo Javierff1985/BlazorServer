@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Redwall\\Front\\Front\\Front.csproj": {}
+    "C:\\JavierDesarrollos\\BlazorServer\\Front\\Front\\Front.csproj": {}
   },
   "projects": {
-    "D:\\Redwall\\Front\\Datos\\Datos.csproj": {
+    "C:\\JavierDesarrollos\\BlazorServer\\Front\\Datos\\Datos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Redwall\\Front\\Datos\\Datos.csproj",
+        "projectUniqueName": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Datos\\Datos.csproj",
         "projectName": "Datos",
-        "projectPath": "D:\\Redwall\\Front\\Datos\\Datos.csproj",
-        "packagesPath": "C:\\Users\\Computer User\\.nuget\\packages\\",
-        "outputPath": "D:\\Redwall\\Front\\Datos\\obj\\",
+        "projectPath": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Datos\\Datos.csproj",
+        "packagesPath": "C:\\Users\\Kiosk Sixteen\\.nuget\\packages\\",
+        "outputPath": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Datos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Computer User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Kiosk Sixteen\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -70,20 +70,20 @@
         }
       }
     },
-    "D:\\Redwall\\Front\\Front\\Front.csproj": {
+    "C:\\JavierDesarrollos\\BlazorServer\\Front\\Front\\Front.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Redwall\\Front\\Front\\Front.csproj",
+        "projectUniqueName": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Front\\Front.csproj",
         "projectName": "Front",
-        "projectPath": "D:\\Redwall\\Front\\Front\\Front.csproj",
-        "packagesPath": "C:\\Users\\Computer User\\.nuget\\packages\\",
-        "outputPath": "D:\\Redwall\\Front\\Front\\obj\\",
+        "projectPath": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Front\\Front.csproj",
+        "packagesPath": "C:\\Users\\Kiosk Sixteen\\.nuget\\packages\\",
+        "outputPath": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Front\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Computer User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Kiosk Sixteen\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -99,8 +99,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\Redwall\\Front\\Datos\\Datos.csproj": {
-                "projectPath": "D:\\Redwall\\Front\\Datos\\Datos.csproj"
+              "C:\\JavierDesarrollos\\BlazorServer\\Front\\Datos\\Datos.csproj": {
+                "projectPath": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Datos\\Datos.csproj"
               }
             }
           }

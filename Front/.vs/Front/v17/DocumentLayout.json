@@ -21,7 +21,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 292,
+          "DockedWidth": 209,
           "SelectedChildIndex": 5,
           "Children": [
             {
@@ -59,8 +59,7 @@
               "RelativeToolTip": "Front\\Components\\Layout\\MainLayout.razor",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAIAAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-05T17:13:30.514Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-05T17:13:30.514Z"
             },
             {
               "$type": "Document",
@@ -70,20 +69,10 @@
               "RelativeDocumentMoniker": "Front\\Components\\Pages\\Reports\\ReportPigment.razor",
               "ToolTip": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Front\\Components\\Pages\\Reports\\ReportPigment.razor",
               "RelativeToolTip": "Front\\Components\\Pages\\Reports\\ReportPigment.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcBAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAAOwAAAAAAAAAAAAUwAUBAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-09-04T17:16:34.72Z",
               "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 218,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             }
           ]
         }

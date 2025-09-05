@@ -1,20 +1,13 @@
 ﻿@page "/Reports/ReportPigment"
 
-
 @using Datos
-
 @using Servicios
 @inject ServiciosInkRoom Ser_
 @using System.Linq
 @using System.Globalization
 @inject IJSRuntime JsRuntime
 
-
-
-
 <h3>ReportPigment</h3>
-
-
 
 <style>
     .Contenedor-Principal {
@@ -157,15 +150,31 @@
     border-radius: 8px;
     backdrop-filter: blur(6px);
 }
+.status-row.active {
+    background-color: rgba(255, 0, 0, 0.1); /* Rojo suave */
+    box-shadow: inset 0 0 0 1px crimson;
+    transition: all 0.3s ease;
+}
 
+.status-row.inactive {
+    background-color: rgba(255, 255, 255, 0.05); /* Fondo neutro */
+    transition: all 0.3s ease;
+}
+
+.status-row.verde {
+    background-color: rgba(0, 255, 0, 0.1);
+}
+
+.status-row.naranja {
+    background-color: rgba(255, 165, 0, 0.1);
+}
+
+.status-row.rojo {
+    background-color: rgba(255, 0, 0, 0.1);
+}
 
 
 </style>
-
-
-
-
-
 
 
 
@@ -220,9 +229,10 @@
                 <tbody style="border:solid;border-block-width:1px;border-color:silver">
                     @foreach (var item in FilteredList)
                     {
-                        <tr style="border:solid;border-block-width:1px;border-color:dimgray">
+                        <tr style="border:solid;border-block-width:1px;border-color:dimgray" class="status-row">
                               <td style="background-color:rgba(255,255,255,0.2);width:30px" class="text-center">
                                 @{
+                                    
                                     string alerta = "";
                                     if (item.TOTAL_STOCK_QUANTITY >= 2 && item.TOTAL_USE_QUANTITY > 0)
                                     {
@@ -254,8 +264,13 @@
                                     {
                                         // alerta = "Error no sale ni mierda";
                                         <button type="button" class="btn btn-danger boton-circular" style="width:20px;height:20px" title="Alerta Crítica"></button>
-                                    }  
-                                }
+                                    }   
+                                      
+                                     
+                                 }
+                                  
+                                     
+                                
                             </td>
                             <td>@item.Type</td>
                             <td>@item.Description</td>
@@ -263,7 +278,9 @@
                             <td>@item.TOTAL_STOCK_QUANTITY</td>
                             <td>@item.TOTAL_USE_QUANTITY</td>
                             <td>@item.PERCENTAGE_USED</td>                          
-                        </tr>                    }
+                        </tr>                   
+                    }
+
                 </tbody>
             </table>
         </div>
@@ -295,6 +312,7 @@ else
   
 @code{
 
+     string claseAlerta = "";
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
