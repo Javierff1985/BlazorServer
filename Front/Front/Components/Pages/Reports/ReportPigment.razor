@@ -5,6 +5,9 @@
 @inject ServiciosInkRoom Ser_
 @using System.Linq
 @using System.Globalization
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/grafica.js"></script>
 @inject IJSRuntime JsRuntime
 
 <h3>ReportPigment</h3>
@@ -205,9 +208,22 @@
 
             <!-- Columna derecha -->
             <div class="col-md-6 d-flex align-items-center justify-content-center text-white">
-              <h2 class="text-center">⚙️ Grafica</h2>
-
-             
+              
+            <table> 
+            <tr>
+                <td style="width:100px"><label >OK</label></td>
+                <td><label >@OK</label></td>
+            </tr>
+             <tr>
+                <td><label>Warning</label></td>
+                <td><label>@warning</label></td>
+            </tr>
+             <tr>
+                <td><label>Alerta</label></td>
+                <td><label>@alerta</label></td>
+            </tr>
+                
+            </table>
             </div>
         </div>
 
@@ -246,10 +262,10 @@
                                         <i class="bi bi-exclamation-triangle-fill" style="font-size: 1.0rem;color:darkorange"></i>
                                     }
                                     // Regla "Alert" 🟥
-                                    else if (item.TOTAL_STOCK_QUANTITY < 0 && item.TOTAL_USE_QUANTITY <= 1)
+                                    else if (item.TOTAL_STOCK_QUANTITY <= 0 && item.TOTAL_USE_QUANTITY <= 1)
                                     {
                                         alerta = "Error rojo";
-                                        bool esAlertaRoja = item.TOTAL_STOCK_QUANTITY < 0 && item.TOTAL_USE_QUANTITY <= 1;
+                                        bool esAlertaRoja = item.TOTAL_STOCK_QUANTITY <= 0 && item.TOTAL_USE_QUANTITY <= 1;
                                         @if (esAlertaRoja)
                                         {
                                             alerta = "Rojo";
@@ -289,7 +305,7 @@
 </div>
 
 
-<label class="cantidad-label">@cantidad</label>
+
 
 @if (showLoading)
 {<div class="spinner-wrapper">
@@ -312,33 +328,29 @@ else
   
 @code{
 
-     string claseAlerta = "";
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            var datos = new[]
-            {
-                new { label = "OK", value = 12 },
-                new { label = "Warning", value = 5 },
-                new { label = "Error", value = 3 }
-            };
-
-            await JsRuntime.InvokeVoidAsync("drawCanvasBarChart", datos);
+            await JsRuntime.InvokeVoidAsync("cargarGrafica", new[] { 2, 1, 1 }); // Reemplaza con tus datos reales
         }
     }
 
 
 
-
-
-
-    private int cantidad;
+     string claseAlerta = "";
+  
+    private int OK;
+    private int warning;
+    private int alerta;
     private bool showLoading = false;
     private bool isLoaded = false;  
     private string selectedColumn = "Type";
     private string filterText = "";
     private List<InkRoomReportACLS> ListaGeneralFront = new();
+
+
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -354,17 +366,13 @@ else
             else
             {
                  ListaGeneralFront = await Ser_.ListaGeneralAsync(); // espera que termine la carga real
-                 cantidad = ListaGeneralFront.Count(item => item.TOTAL_STOCK_QUANTITY >= 2 && item.TOTAL_USE_QUANTITY > 0);
+                 OK = ListaGeneralFront.Count(item => item.TOTAL_STOCK_QUANTITY >= 2 && item.TOTAL_USE_QUANTITY > 0);
+                 warning = ListaGeneralFront.Count(item => item.TOTAL_STOCK_QUANTITY == 1 && item.TOTAL_USE_QUANTITY == 1);
+                 alerta = ListaGeneralFront.Count(item => item.TOTAL_STOCK_QUANTITY <= 0 && item.TOTAL_USE_QUANTITY <= 1);
                  isLoaded = true;
                  showLoading = false;            
-            
-                  var datos = new[]
-                    {
-                        new { label = "OK", value = 12 },
-                        new { label = "Warning", value = 5 },
-                        new { label = "Error", value = 3 }
-                    };
-                await JsRuntime.InvokeVoidAsync("drawCanvasBarChart", datos); 
+            await JsRuntime.InvokeVoidAsync("cargarGrafica", new[] { 2, 1, 1 }); // Reemplaza con tus datos reales
+               
 
             }
           
