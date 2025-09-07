@@ -58,7 +58,48 @@
         border-radius: 8px;
     }
 
+    .animated-bg {
+        background: linear-gradient(135deg, #111 0%, #222 100%);
+        animation: fadeIn 1.2s ease-in-out;
+    }
 
+    .fade-in {
+        animation: fadeInUp 1s ease-out;
+    }
+
+    .glow-red {
+        color: #dc3545;
+        text-shadow: 0 0 10px #dc3545, 0 0 16px #ff4d4d;
+    }
+
+    .hover-fade:hover {
+        background-color: #dc3545 !important;
+        color: white !important;
+        transition: all 0.3s ease;
+    }
+
+    /* Animaciones */
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
 
 
@@ -72,15 +113,15 @@
         </div>
         <ul>
             <li class="section-title">Ink Room</li>
-            
-            <li><NavLink href="InkRoom/EntryPigment">Entry Pigment</NavLink></li>
-            <li><NavLink href="InkRoom/updatePigment">Update Pigment</NavLink></li>
-            <li><NavLink href="Inkroom/StockQuality">Stock Quality</NavLink></li>
+
+        <li><NavLink class="glow-red" style="color:white" href="InkRoom/EntryPigment">Entry Pigment</NavLink></li>
+        <li><NavLink class="glow-red" style="color:white"  href="InkRoom/updatePigment">Update Pigment</NavLink></li>
+        <li><NavLink class="glow-red" style="color:white"  href="Inkroom/StockQuality">Stock Quality</NavLink></li>
 
             <li class="section-title">Report</li>
-            
-            <li><NavLink href="/Reports/ReportPigment">Pigment Report</NavLink></li>
-            <li><NavLink href="Reports/StockMixed">Stock Mixed</NavLink></li>
+
+        <li><NavLink class="glow-red" style="color:white"  href="/Reports/ReportPigment">Pigment Report</NavLink></li>
+            <li><NavLink class="glow-red" style="color:white" href="Reports/StockMixed">Stock Mixed</NavLink></li>
         </ul>
     </nav>
 

@@ -3,12 +3,21 @@
   "WorkspaceRootPath": "D:\\Redwall\\Front\\",
   "Documents": [
     {
+<<<<<<< HEAD
       "AbsoluteMoniker": "D:0:0:{5C474ACC-9765-493D-996A-977AE3452C07}|Front\\Front.csproj|d:\\redwall\\front\\front\\components\\pages\\reports\\reportpigment.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{5C474ACC-9765-493D-996A-977AE3452C07}|Front\\Front.csproj|solutionrelative:front\\components\\pages\\reports\\reportpigment.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5C474ACC-9765-493D-996A-977AE3452C07}|Front\\Front.csproj|d:\\redwall\\front\\front\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{5C474ACC-9765-493D-996A-977AE3452C07}|Front\\Front.csproj|solutionrelative:front\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+=======
+      "AbsoluteMoniker": "D:0:0:{5C474ACC-9765-493D-996A-977AE3452C07}|Front\\Front.csproj|c:\\javierdesarrollos\\blazorserver\\front\\front\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5C474ACC-9765-493D-996A-977AE3452C07}|Front\\Front.csproj|solutionrelative:front\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C474ACC-9765-493D-996A-977AE3452C07}|Front\\Front.csproj|c:\\javierdesarrollos\\blazorserver\\front\\front\\components\\pages\\inkroom\\entrypigment.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5C474ACC-9765-493D-996A-977AE3452C07}|Front\\Front.csproj|solutionrelative:front\\components\\pages\\inkroom\\entrypigment.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+>>>>>>> c9f51d89def183d559878c045db95a49688221d5
     }
   ],
   "DocumentGroupContainers": [
@@ -17,6 +26,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
+<<<<<<< HEAD
           "DockedWidth": 198,
           "SelectedChildIndex": 3,
           "Children": [
@@ -62,6 +72,35 @@
               "ViewState": "AgIAAMQAAAAAAAAAAAAuwPIAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-09-03T17:20:06.91Z",
+=======
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Front\\Components\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "Front\\Components\\Layout\\NavMenu.razor",
+              "ToolTip": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Front\\Components\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "Front\\Components\\Layout\\NavMenu.razor",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAAAHsAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-06T15:40:08.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EntryPigment.razor",
+              "DocumentMoniker": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Front\\Components\\Pages\\InkRoom\\EntryPigment.razor",
+              "RelativeDocumentMoniker": "Front\\Components\\Pages\\InkRoom\\EntryPigment.razor",
+              "ToolTip": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Front\\Components\\Pages\\InkRoom\\EntryPigment.razor",
+              "RelativeToolTip": "Front\\Components\\Pages\\InkRoom\\EntryPigment.razor",
+              "ViewState": "AgIAALcAAAAAAAAAAAAAAMwAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-06T13:57:21.075Z",
+>>>>>>> c9f51d89def183d559878c045db95a49688221d5
               "EditorCaption": ""
             }
           ]
