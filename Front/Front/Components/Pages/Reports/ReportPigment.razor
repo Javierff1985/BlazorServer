@@ -6,9 +6,6 @@
 @using System.Linq
 @using System.Globalization
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="/grafica.js"></script>
-@inject IJSRuntime JsRuntime
 
 <h3>ReportPigment</h3>
 
@@ -328,14 +325,7 @@ else
   
 @code{
 
-     protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await JsRuntime.InvokeVoidAsync("cargarGrafica", new[] { 2, 1, 1 }); // Reemplaza con tus datos reales
-        }
-    }
-
+   
 
 
      string claseAlerta = "";
@@ -371,7 +361,7 @@ else
                  alerta = ListaGeneralFront.Count(item => item.TOTAL_STOCK_QUANTITY <= 0 && item.TOTAL_USE_QUANTITY <= 1);
                  isLoaded = true;
                  showLoading = false;            
-            await JsRuntime.InvokeVoidAsync("cargarGrafica", new[] { 2, 1, 1 }); // Reemplaza con tus datos reales
+            
                
 
             }

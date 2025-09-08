@@ -1,5 +1,9 @@
 ﻿@page "/InkRoom/EntryPigment"
-
+@inject ServiciosInkRoom Ser_
+@using System.Linq
+@using System.Globalization
+@using Datos
+@using Front.Servicios
 
 <style>
     .Contenedor-Principal {
@@ -146,7 +150,7 @@
         backdrop-filter: blur(6px);
     }
 
-    
+
 
 
     .login-wrapper {
@@ -167,18 +171,7 @@
         border: 1px solid rgba(255, 255, 255, 0.18);
     }
 
-
-
-
-
-
-
 </style>
-
-
-
-
-
 
 <div class="login-wrapper">
     <div class="login-card">
@@ -187,35 +180,117 @@
         </div>
         <br /> <br />
         <div class="row">
-            <labrl class="te">Select Pigmento</labrl>
+            <label style="color:white">Select Pigmento</label>
             <div class="col-md-12">
-            <select style="width:100%;color:black" class="form-select"></select>
-        </div>
+                <select class="form-select" style="width:100%;color:black"                      
+                        @onchange="@(async e => await OnPigmentoChanged(e))">
+                    <option disabled selected value="">-- Select Pigment --</option>
+                    @foreach (var pigmento in pigmentos)
+                    {
+                      <option value="@pigmento.TypeCLS">@pigmento.TypeCLS</option>
+                    }
+                </select>
+            </div>
         </div>
         <br />
 
         <div class="row">
+            <label style="color:white">Select Color</label>
             <div class="col-md-12">
-            <select style="width:100%;color:black" class="form-select"></select>
-        </div>
+                <select class="form-select glass-select mb-2" @bind="selectedColorID">
+                    <option disabled selected value="">-- Select Color --</option>
+                    @foreach (var Color in selectedPigmentoNombre)
+                    {
+                        <option value="@Color.descriptionCLS">@Color.descriptionCLS</option>
+                    }
+                </select>
             </div>
+        </div>
+
         <br />
         <div class="row">
             <div class="col-md-6">
-               <input type="number" class="form-control input-moderno" />
-               
+                <label style="color:white">Quantity</label>
+                <input type="number" class="form-control" />
             </div>
             <div class="col-md-6">
+                <label style="color:white">Select Pigmento</label>
                 <input type="text" class="form-control" />
             </div>
-
         </div>
-
-
-
     </div>
 </div>
 
-@code {
 
+@if (showLoading)
+{
+    <div class="spinner-wrapper">
+        <div class="glass-loader">
+            <div class="loader"></div>
+            <span>Cargando vista...</span>
+        </div>
+    </div>
+    @* <LoadingSpinner /> *@
+}
+else if (!isLoaded)
+{
+    <!-- Nada aún, pero sin mostrar spinner -->
+}
+else
+{
+    <DashboardContent />
+}
+
+
+@code {
+    
+
+    private int selectedPigmentoId;
+    private bool showLoading = false;
+    private bool isLoaded = false;
+    private string selectedPigmentoID = string.Empty;
+    private int selectedColorID;
+    private List<InkSelectColor> selectedPigmentoNombre = new();
+    private List<InkRoomCLS> pigmentos = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var delayTask = Task.Delay(1000); // espera 2 segundos
+            var completedTask = await Task.WhenAny(Ser_.ListarPigmento(), delayTask);
+
+            if (completedTask == delayTask)
+            {
+                showLoading = true;
+            }
+            else
+            {
+                pigmentos = await Ser_.ListarPigmento(); // espera que termine la carga real
+                isLoaded = true;
+                showLoading = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            //isLoading = false;
+        }
+    }
+
+    private async Task OnPigmentoChanged(ChangeEventArgs e)
+    {
+        var tipo = e.Value?.ToString();
+        if (!string.IsNullOrWhiteSpace(tipo))
+        {
+            try
+            {
+                selectedPigmentoNombre = await Ser_.ListarColor(tipo);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+    }
 }

@@ -14,6 +14,7 @@ namespace Front.Servicios
             httpClient = _httClient;
         }
 
+        //carga el reporte geenral
         public async Task<List<InkRoomReportACLS>> ListaGeneralAsync()
         {
             try
@@ -28,10 +29,44 @@ namespace Front.Servicios
             }
         }
 
+        // carga los pigmentos
+        public async Task<List<InkRoomCLS>> ListarPigmento()
+        {
+            try
+            {
+                var response = await httpClient.GetFromJsonAsync<List<InkRoomCLS>>("api/InkRoom/type");
+                return response ?? new List<InkRoomCLS>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Error al consumir API: {ex.Message}");
+                return new List<InkRoomCLS>(); // defensivo: nunca null
+            }
+        }
+
+        //carga los colores segun cada pigmento
+        public async Task<List<InkSelectColor>> ListarColor(string TypePigment)
+        {
+            try
+            {
+                var response = await httpClient.GetFromJsonAsync<List<InkSelectColor>>("api/InkRoom/inkcolor/{TypePigment}");
+                return response ?? new List<InkSelectColor>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Error al consumir API: {ex.Message}");
+                return new List<InkSelectColor>(); // defensivo: nunca null
+            }
+        }
+
+
+
+
+
+
 
 
 
 
     }
-
 }

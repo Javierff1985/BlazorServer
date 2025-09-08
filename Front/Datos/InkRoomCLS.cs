@@ -14,7 +14,8 @@
             public string UnitCLS { get; set; } = null!;
 
             public int IdareaCLs { get; set; }
-
-
     }
+
+
+
 }
