@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "C:\\JavierDesarrollos\\BlazorServer\\Front\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5C474ACC-9765-493D-996A-977AE3452C07}|Front\\Front.csproj|c:\\javierdesarrollos\\blazorserver\\front\\front\\components\\pages\\reports\\reportpigment.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5C474ACC-9765-493D-996A-977AE3452C07}|Front\\Front.csproj|solutionrelative:front\\components\\pages\\reports\\reportpigment.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5C474ACC-9765-493D-996A-977AE3452C07}|Front\\Front.csproj|c:\\javierdesarrollos\\blazorserver\\front\\front\\components\\pages\\inkroom\\entrypigment.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{5C474ACC-9765-493D-996A-977AE3452C07}|Front\\Front.csproj|solutionrelative:front\\components\\pages\\inkroom\\entrypigment.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7AFFE408-6F2C-4753-8ED3-6C2E78539821}|Datos\\Datos.csproj|c:\\javierdesarrollos\\blazorserver\\front\\datos\\inkroomcls.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7AFFE408-6F2C-4753-8ED3-6C2E78539821}|Datos\\Datos.csproj|solutionrelative:datos\\inkroomcls.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5C474ACC-9765-493D-996A-977AE3452C07}|Front\\Front.csproj|c:\\javierdesarrollos\\blazorserver\\front\\front\\servicios\\serviciosinkroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5C474ACC-9765-493D-996A-977AE3452C07}|Front\\Front.csproj|solutionrelative:front\\servicios\\serviciosinkroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5C474ACC-9765-493D-996A-977AE3452C07}|Front\\Front.csproj|c:\\javierdesarrollos\\blazorserver\\front\\front\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{5C474ACC-9765-493D-996A-977AE3452C07}|Front\\Front.csproj|solutionrelative:front\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -44,36 +40,19 @@
         },
         {
           "DockedWidth": 301,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "InkRoomCLS.cs",
-              "DocumentMoniker": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Datos\\InkRoomCLS.cs",
-              "RelativeDocumentMoniker": "Datos\\InkRoomCLS.cs",
-              "ToolTip": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Datos\\InkRoomCLS.cs",
-              "RelativeToolTip": "Datos\\InkRoomCLS.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-08T14:29:18.916Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MainLayout.razor",
-              "DocumentMoniker": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Front\\Components\\Layout\\MainLayout.razor",
-              "RelativeDocumentMoniker": "Front\\Components\\Layout\\MainLayout.razor",
-              "ToolTip": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Front\\Components\\Layout\\MainLayout.razor",
-              "RelativeToolTip": "Front\\Components\\Layout\\MainLayout.razor",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAUwIIAAAAYAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "ReportPigment.razor",
+              "DocumentMoniker": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Front\\Components\\Pages\\Reports\\ReportPigment.razor",
+              "RelativeDocumentMoniker": "Front\\Components\\Pages\\Reports\\ReportPigment.razor",
+              "ToolTip": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Front\\Components\\Pages\\Reports\\ReportPigment.razor",
+              "RelativeToolTip": "Front\\Components\\Pages\\Reports\\ReportPigment.razor",
+              "ViewState": "AgIAALoAAAAAAAAAAAAAAM8AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-08T13:59:31.133Z",
+              "WhenOpened": "2025-09-08T16:15:12.431Z",
               "EditorCaption": ""
             },
             {
@@ -84,20 +63,20 @@
               "RelativeDocumentMoniker": "Front\\Servicios\\ServiciosInkRoom.cs",
               "ToolTip": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Front\\Servicios\\ServiciosInkRoom.cs",
               "RelativeToolTip": "Front\\Servicios\\ServiciosInkRoom.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAgwC8AAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-08T13:45:08.923Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "EntryPigment.razor",
               "DocumentMoniker": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Front\\Components\\Pages\\InkRoom\\EntryPigment.razor",
               "RelativeDocumentMoniker": "Front\\Components\\Pages\\InkRoom\\EntryPigment.razor",
               "ToolTip": "C:\\JavierDesarrollos\\BlazorServer\\Front\\Front\\Components\\Pages\\InkRoom\\EntryPigment.razor",
               "RelativeToolTip": "Front\\Components\\Pages\\InkRoom\\EntryPigment.razor",
-              "ViewState": "AgIAAN8AAAAAAAAAAAAAABkBAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAABYAAAAAAAAAAAAawAwAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-09-06T13:57:21.075Z",
               "EditorCaption": ""

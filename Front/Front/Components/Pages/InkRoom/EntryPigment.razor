@@ -279,18 +279,20 @@ else
 
     private async Task OnPigmentoChanged(ChangeEventArgs e)
     {
-        var tipo = e.Value?.ToString();
-        if (!string.IsNullOrWhiteSpace(tipo))
-        {
-            try
-            {
-                selectedPigmentoNombre = await Ser_.ListarColor(tipo);
-            }
-            catch (Exception ex)
-            {
+        Console.WriteLine("✅ Evento OnChange ejecutado");
 
-            }
-        }
+        // var tipo = e.Value?.ToString();
+        // if (!string.IsNullOrWhiteSpace(tipo))
+        // {
+        //     try
+        //     {
+        //         selectedPigmentoNombre = await Ser_.ListarColor(tipo);
+        //     }
+        //     catch (Exception ex)
+        //     {
+
+        //     }
+        // }
 
     }
 }
