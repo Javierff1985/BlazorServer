@@ -4,6 +4,9 @@
 @using System.Globalization
 @using Datos
 @using Front.Servicios
+@using Radzen
+@using Radzen.Blazor
+
 
 <style>
     .Contenedor-Principal {
@@ -182,14 +185,15 @@
         <div class="row">
             <label style="color:white">Select Pigmento</label>
             <div class="col-md-12">
-                <select class="form-select" style="width:100%;color:black"                      
-                        @onchange="@(async e => await OnPigmentoChanged(e))">
-                    <option disabled selected value="">-- Select Pigment --</option>
-                    @foreach (var pigmento in pigmentos)
-                    {
-                      <option value="@pigmento.TypeCLS">@pigmento.TypeCLS</option>
-                    }
-                </select>
+                <RadzenDropDown Data="@pigmentos"
+                                TextProperty="TypeCLS"
+                                ValueProperty="TypeCLS"
+                                @bind-Value="selectedPigmentoID"
+                                Placeholder="-- Select Pigment --"
+                                Style="width:100%; color:black"
+                                Class="form-select glass-select" />
+
+
             </div>
         </div>
         <br />
@@ -230,6 +234,14 @@ else
 
 @code {
     
+
+    void HandleChange(ChangeEventArgs e)
+    {
+        var valor = e.Value?.ToString();
+        Console.WriteLine($"Seleccionado: {valor}");
+        StateHasChanged();
+    }
+
 
     private int selectedPigmentoId;
     private bool showLoading = false;

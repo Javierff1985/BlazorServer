@@ -268,10 +268,10 @@ D:\Redwall\Front\Front\obj\Debug\net9.0\staticwebassets.build.json
 D:\Redwall\Front\Front\obj\Debug\net9.0\staticwebassets.build.json.cache
 D:\Redwall\Front\Front\obj\Debug\net9.0\staticwebassets.development.json
 D:\Redwall\Front\Front\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-D:\Redwall\Front\Front\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 D:\Redwall\Front\Front\obj\Debug\net9.0\Front.csproj.Up2Date
 D:\Redwall\Front\Front\obj\Debug\net9.0\Front.dll
 D:\Redwall\Front\Front\obj\Debug\net9.0\refint\Front.dll
 D:\Redwall\Front\Front\obj\Debug\net9.0\Front.pdb
 D:\Redwall\Front\Front\obj\Debug\net9.0\Front.genruntimeconfig.cache
 D:\Redwall\Front\Front\obj\Debug\net9.0\ref\Front.dll
+D:\Redwall\Front\Front\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
